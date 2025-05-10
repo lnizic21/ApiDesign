@@ -36,4 +36,4 @@ Sustav omogućuje {detaljniji opis funkcionalnosti i svrhe projekta}.
 ## Autori
 Ime i prezime autora
 - Email: {email_autora}
-- GitHub: [GitHub profil](https://github.com/{korisničko_ime})
+- GitHub: [GitHub profil](https://github.com/{lnizic21})

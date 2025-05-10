@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 app.post("/user", createNewUser);
 app.post("/signin", signin);
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Example app listening at http://localhost:${port}`);
   console.log("Server is starting correctly");
 });

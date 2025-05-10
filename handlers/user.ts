@@ -1,5 +1,6 @@
 import { prisma } from '../db';
 import { createJWT, hashPassword, comparePasswords } from '../modules/auth';
+import { Request, Response } from 'express';
 
 
 export const createNewUser = async (req, res) => {
@@ -49,7 +50,7 @@ export const getUser = async (req, res) => {
 }
 
 export const updateUsername = async (req, res) => {
-  const username = req.user.username;
+  const username = req.body.username;
   const newUsername = req.body.newUsername;
 
   if (newUsername) {

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { updateUsername, getUser } from './handlers/user';
 import { createPost, updatePost, deletePost, getAllPosts, getPostById } from './handlers/post';
-
+import { createNewUserAdmin, deleteUserAdmin, getAllUsersAdmin, deleteAllUsersAdmin } from './handlers/admin';
 const router = Router();
 
 router.get("/product", (req, res) => {
@@ -16,4 +16,11 @@ router.delete("/deletePost/:id", deletePost);
 router.get("/getPosts", getAllPosts);
 router.get("/post/:id", getPostById);
 
-export default router;
+const adminRouter = Router();
+
+adminRouter.post("/createUser", createNewUserAdmin);
+adminRouter.delete("/deleteUser", deleteUserAdmin);
+adminRouter.get("/getAllUsers", getAllUsersAdmin);
+adminRouter.delete("/deleteAllUsers",deleteAllUsersAdmin);
+
+export { router, adminRouter };

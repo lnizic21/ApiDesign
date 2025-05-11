@@ -49,6 +49,7 @@ export const getUser = async (req, res) => {
   res.json(user);
 }
 
+
 export const updateUsername = async (req, res) => {
   const username = req.body.username;
   const newUsername = req.body.newUsername;

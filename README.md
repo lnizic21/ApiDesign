@@ -1,4 +1,4 @@
-# SIS Projekt
+# SI Projekt
 
 ## Opis
 Ovaj projekt služi za demonstraciju sustava koji obuhvaća {opis glavne funkcionalnosti}. 

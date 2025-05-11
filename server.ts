@@ -10,6 +10,8 @@ import { protect } from './middleware/defend';
 import {router, adminRouter} from './router';
 import { createNewUser, signin } from './handlers/user';
 import { protectAdmin } from "./middleware/defendAdmin";
+import { body, oneOf, validationResult } from "express-validator"
+import { handleInputErrors } from "./modules/middleware";
 
 
 app.use(cors({
@@ -23,13 +25,24 @@ app.options('*', cors({
 app.use(express.static("static"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 app.use('/api', protect, router);
 app.use('/admin', protectAdmin, adminRouter);
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
-app.post("/user", createNewUser);
-app.post("/signin", signin);
+app.post("/user",
+  body("username").isString().notEmpty(),
+  body("password").isString().notEmpty(),
+  handleInputErrors,
+  createNewUser);
+
+app.post("/signin", 
+  body("username").isString().notEmpty(),
+  body("password").isString().notEmpty(),
+  handleInputErrors,
+  signin);
 
 app.listen(port, '0.0.0.0', () => {
   console.log(`Example app listening at http://localhost:${port}`);

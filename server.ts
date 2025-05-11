@@ -26,6 +26,7 @@ app.use(express.static("static"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+
 app.use('/api', protect, router);
 app.use('/admin', protectAdmin, adminRouter);
 

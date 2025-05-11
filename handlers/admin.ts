@@ -1,16 +1,21 @@
+
 import { prisma } from '../db';
 import { createJWT, hashPassword, comparePasswords } from '../modules/auth';
 import { Request, Response } from 'express';
 
 export const createNewUserAdmin = async (req, res) => {
   const hash = await hashPassword(req.body.password);
-
+  try {
   const user = await prisma.user.create({
     data: {
       username: req.body.username,
       password: hash,
     },
   });
+  } catch (error) {
+      console.error(error);
+      res.status(400).json({ error: 'Failed to create user' });
+  }
   res.json({ "Ok": true });
 };
 export const deleteUserAdmin = async (req, res) => {

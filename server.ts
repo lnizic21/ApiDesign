@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const port = 5000;
 const path = require("path");
+const cors = require("cors");
 import * as dotenv from "dotenv";
 dotenv.config();
 
@@ -10,6 +11,15 @@ import {router, adminRouter} from './router';
 import { createNewUser, signin } from './handlers/user';
 import { protectAdmin } from "./middleware/defendAdmin";
 
+
+app.use(cors({
+  origin: true,
+  credentials: true
+}));
+app.options('*', cors({
+  origin: true,
+  credentials: true
+}));
 app.use(express.static("static"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

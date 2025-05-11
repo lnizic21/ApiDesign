@@ -15,6 +15,7 @@ model User {
   createdAt DateTime @default(now())
   username  String   @unique
   password  String
+  role     Role     @default(USER)
   posts     Post[]
 }
 
@@ -25,5 +26,10 @@ model Post {
   content   String?
   published Boolean  @default(false)
   authorId  String
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+}
+
+enum Role {
+  USER
+  ADMIN
 }

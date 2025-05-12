@@ -4,7 +4,8 @@ import * as bcrypt from "bcrypt";
 export const createJWT = (user) => {
   const token = jwt.sign(
     { id: user.id, username: user.username , role: user.role },
-    process.env.JWT_SECRET
+    process.env.JWT_SECRET,
+    {expiresIn: "1h"}, 
   );
   return token;
 };

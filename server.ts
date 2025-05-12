@@ -12,7 +12,14 @@ import { createNewUser, signin } from './handlers/user';
 import { protectAdmin } from "./middleware/defendAdmin";
 import { body, oneOf, validationResult } from "express-validator"
 import { handleInputErrors } from "./modules/middleware";
+import {rateLimit} from "express-rate-limit";
 
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, 
+  max: 100,
+  message: "Too many requests, please try again later.",
+});
+app.use(limiter);
 
 app.use(cors({
   origin: true,
@@ -25,6 +32,7 @@ app.options('*', cors({
 app.use(express.static("static"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
 
 
 app.use('/api', protect, router);
